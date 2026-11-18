@@ -1,0 +1,22 @@
+# ACA fixture: deliberately over-permissive access policy for scanner testing.
+# Do not apply this policy to any real account or environment.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scanner-fixture-overpermissive-access
+  labels:
+    scanner-fixture/category: aca
+    scanner-fixture/purpose: access-control-analysis
+ data:
+  policy.json: |
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": "*",
+          "Resource": "*"
+        }
+      ]
+    }
