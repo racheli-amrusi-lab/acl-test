@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scanner-fixture-privileged
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scanner-fixture
+  template:
+    metadata:
+      labels:
+        app: scanner-fixture
+    spec:
+      containers:
+        - name: fixture
+          image: nginx:1.14.2
+          securityContext:
+            privileged: true
+            allowPrivilegeEscalation: true
+            runAsRoot: true
+          ports:
+            - containerPort: 80
